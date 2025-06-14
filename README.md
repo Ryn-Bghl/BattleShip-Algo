@@ -120,6 +120,15 @@ exemple:
 
 # 4. creer une fonction qui place le bateau dans la grille
 
+## Argument : 
+
+Le bateau [[], [], []]
+
+La grille [[], [], []]
+
+La position de départ (x, y)
+
 # 5. creer une fonction qui rotationne la grille de 90°
 
 # 6. creer une fonction qui affiche la grille
+

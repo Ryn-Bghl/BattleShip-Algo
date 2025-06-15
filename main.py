@@ -19,24 +19,23 @@ def rotate_boat(boat):
 
 
 def get_stats(boat, grid):
-    for n in range(4):
+    for _ in range(4):
         for i in range(len(grid) - len(boat) + 1):
             for j in range(len(grid[i]) - len(boat[0]) + 1):
                 can_place = True
-                for k in range(len(boat)):
-                    for l in range(len(boat[k])):
-                        if isinstance(grid[i + k][j + l], str):
+                for k, row in enumerate(boat):
+                    for l, col in enumerate(row):
+                        if isinstance(grid[i + k][j + l], str) and col != 0:
                             can_place = False
                             break
                     if not can_place:
                         break
 
                 if can_place:
-                    for k in range(len(boat)):
-                        for l in range(len(boat[k])):
-                            grid[i + k][j + l] += boat[k][l]
-                    display_grid(boat)
-                    display_grid(grid)
+                    for k, row in enumerate(boat):
+                        for l, col in enumerate(row):
+                            if col != 0:
+                                grid[i + k][j + l] += col
 
         # rotate boat
         boat = rotate_boat(boat)
@@ -44,11 +43,11 @@ def get_stats(boat, grid):
 
 
 grid = [[0, 0, 0],
-        [0, 0, 0],
+        [0, "X", 0],
         [0, 0, 0]]
 
-# boat = [[1, 1, 1], [1, 0, 1]]
-boat = [[1, 1, 1], [1, 1, 0]]
+boat = [[1, 1],
+        [0, 1]]
 
 grid = get_stats(boat, grid)
 display_grid(grid)

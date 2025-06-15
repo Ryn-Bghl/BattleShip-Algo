@@ -107,11 +107,21 @@ h1 {
     gap: 5px;
 }
 
-.grid-row {
+.boat {
+    user-select: none;
+    display: grid;
+    grid-template-columns: repeat(var(--boat-columns), 1fr);
+    grid-template-rows: repeat(var(--boat-rows), 1fr);
+    gap: 5px;
+}
+
+.grid-row,
+.boat-row {
     display: contents;
 }
 
-.grid-cell {
+.grid-cell,
+.boat-cell {
     font-size: 150%;
     color: white;
     width: 50px;
@@ -124,7 +134,8 @@ h1 {
     transition: background-color 0.2s ease-in-out;
 }
 
-.grid-cell:hover {
+.grid-cell:hover,
+.boat-cell:hover {
     background-color: var(--cls-orange);
 }
 

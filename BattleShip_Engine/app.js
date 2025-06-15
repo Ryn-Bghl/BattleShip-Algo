@@ -1,37 +1,22 @@
 const root = document.documentElement;
 const gridContainer = document.getElementById("grid_container");
 const boatContainer = document.getElementById("boat_container");
+const generateBoatBtn = document.getElementById("generate_boat_btn");
 const generateBoardBtn = document.getElementById("generate_board_btn");
 
-// const boats = [
-//   [[1]],
-//   [[1]],
-//   [[1]],
-//   [[1, 1]],
-//   [[1, 1]],
-//   [[1, 1]],
-//   [[1, 1, 1]],
-//   [[1, 1, 1]],
-//   [[1, 1, 1, 1]],
-// ];
-
-// const boats = [
-//   [[1, 1]],
-//   [[1, 1, 1]],
-//   [[1, 1, 1]],
-//   [[1, 1, 1, 1]],
-//   [[1, 1, 1, 1, 1]],
-// ];
-const boats = [
-  [[1, 1, 1]],
-  [[1, 1, 1]],
-  [[1, 1, 1, 1]],
-  [[1, 1, 1, 1]],
+boats = [
+  [[1, 1]],
+  [[1, 1]],
   [
-    [1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1],
+    [1, 1, 1],
+    [0, 1, 0],
+    [0, 1, 0],
   ],
-  [[1, 1, 1, 1, 1, 1]],
+  [
+    [1, 0],
+    [1, 1],
+  ],
+  [[1, 1, 1, 1]],
 ];
 
 class PrettyTable {
@@ -98,6 +83,27 @@ function generateGridHTML(rows, columns) {
   return gridHTML;
 }
 
+function generateBoatHTML(rows, columns) {
+  const boatHTML = document.createElement("div");
+  boatHTML.classList.add("boat");
+  for (let i = 0; i < rows; i++) {
+    const rowHTML = document.createElement("div");
+    rowHTML.classList.add("boat-row");
+    for (let j = 0; j < columns; j++) {
+      const cellHTML = document.createElement("div");
+      cellHTML.classList.add("boat-cell");
+      rowHTML.appendChild(cellHTML);
+    }
+    boatHTML.appendChild(rowHTML);
+  }
+
+  // Set the CSS variables based on the boat size
+  root.style.setProperty("--boat-rows", rows);
+  root.style.setProperty("--boat-columns", columns);
+
+  return boatHTML;
+}
+
 /**
  * Gets the grid matrix from the grid HTML.
  * @returns {Array<Array<number|string>>} - The grid matrix.
@@ -150,7 +156,9 @@ function showGridMatrix(gridMatrix) {
       typeof gridMatrix[row][column] === "number"
         ? gridMatrix[row][column].toString()
         : "x";
-    if (gridMatrix[row][column] != "x") {
+    if (gridMatrix[row][column] === max) {
+      gridHTML[i].style.backgroundColor = "green";
+    } else if (gridMatrix[row][column] != "x") {
       gridHTML[i].style.backgroundColor = scale(gridMatrix[row][column]).hex();
     }
   }
@@ -236,6 +244,14 @@ generateBoardBtn.addEventListener("click", () => {
   gridContainer.innerHTML = "";
   gridContainer.appendChild(generateGridHTML(rows, columns));
   showGridMatrix(getStats(boats, getGridMatrix()));
+});
+
+generateBoatBtn.addEventListener("click", () => {
+  const sizes = document.querySelectorAll(".size");
+  const rows = sizes[2].value;
+  const columns = sizes[3].value;
+  boatContainer.innerHTML = "";
+  boatContainer.appendChild(generateBoatHTML(rows, columns));
 });
 
 document.addEventListener("click", (event) => {

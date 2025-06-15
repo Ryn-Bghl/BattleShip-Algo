@@ -51,3 +51,10 @@ boat = [[1, 1],
 
 grid = get_stats(boat, grid)
 display_grid(grid)
+
+boat = [[0, 1],
+        [1, 1],
+        [1, 0]]
+
+grid = get_stats(boat, grid)
+display_grid(grid)

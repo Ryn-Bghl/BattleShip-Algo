@@ -1,7 +1,12 @@
-# Comment representer les bateau ?
+# BattleShip Engine Theme
 
-les bateau sont :
+<https://tweakcn.com/editor/theme>
 
+## Comment représenter les bateaux ?
+
+Les bateaux sont :
+
+``` python
 1 1 0
 0 1 1
 0 0 0
@@ -21,11 +26,13 @@ les bateau sont :
 1 0 0
 0 0 0
 0 0 0
+```
 
-# Comment representer la grille ?
+## Comment représenter la grille ?
 
-les grilles sont :
+Les grilles sont :
 
+``` python
 0 0 0
 0 X 0
 0 0 0
@@ -33,21 +40,27 @@ les grilles sont :
 0 0 0
 0 0 0
 0 0 0
+```
 
-# Avec les bateau simples et les grilles simple
+## Avec les bateaux simples et les grilles simples
 
-GRILLE 3X3
+### GRILLE 3x3
 
+``` python
 0 0 0
 0 0 0
 0 0 0
+```
 
-BATEAU 1X3
+### BATEAU 1x3
 
+``` python
 1 1 1
+```
 
-==>
+### ==>
 
+``` python
 0 0 0
 0 0 0
 0 0 0
@@ -60,24 +73,27 @@ BATEAU 1X3
 0 0 0
 0 0 0
 
-.
-.
-.
+...
 
 2 3 2
 3 4 3
 2 3 2
+```
 
 On peut aussi
 
-GRILLE 3X3 en rotation 0° + 90° + 180° + 270°
+### GRILLE 3x3 en rotation 0° + 90° + 180° + 270°
 
-# Comment effectuer une rotation dans une matrix
+## Comment effectuer une rotation dans une matrice
 
+```python
 def rotate_90_clockwise(matrix):
     return [list(reversed(col)) for col in zip(*matrix)]
+```
 
-# Exemple
+## Exemple
+
+```python
 matrice = [
     [1, 0, 0],
     [0, 1, 0],
@@ -87,49 +103,50 @@ matrice = [
 matrice_rotated = rotate_90_clockwise(matrice)
 for row in matrice_rotated:
     print(row)
+```
 
-# TOUT SERA DES MATRICES !
+## TOUT SERA DES MATRICES
 
-les bateaux sont des matrices
+Les bateaux sont des matrices
 
-exemple:
+Exemple:
 
+``` python
 1 1 0
 0 1 1
-0 0 0
+```
 
-[[1, 1, 0], [0, 1, 1]]
+`[[1, 1, 0], [0, 1, 1]]`
 
-les grilles sont des matrices
+Les grilles sont des matrices
 
-exemple:
+Exemple:
 
+``` python
 0 0 0
 0 X 0
 0 0 0
+```
 
-[[0, 0, 0], [0, X, 0], [0, 0, 0]]
+`[[0, 0, 0], [0, 'X', 0], [0, 0, 0]]`
 
-# PSEUDO CODE
+## PSEUDO CODE
 
-# 1. creer une grille vide de n x n
+1. Créer une grille vide de n x n
 
-# 2. creer les bateaux
+2. Créer les bateaux
 
-# 3. creer une fonction qui verifie si le bateau peut etre place dans la grille
+3. Créer une fonction qui vérifie si le bateau peut être placé dans la grille
 
-# 4. creer une fonction qui place le bateau dans la grille
+4. Créer une fonction qui place le bateau dans la grille
 
-## Argument : 
+   * Arguments :
+     * Le bateau `[[], [], []]`
+     * La grille `[[], [], []]`
+     * La position de départ `(x, y)`
 
-Le bateau [[], [], []]
+5. Créer une fonction qui rotationne la grille de 90°
 
-La grille [[], [], []]
+6. Créer une fonction qui affiche la grille
 
-La position de départ (x, y)
-
-# 5. creer une fonction qui rotationne la grille de 90°
-
-# 6. creer une fonction qui affiche la grille
-
-# 7. les case avec le plus de case adjacente sont les plus favorables
+7. Les cases avec le plus de cases adjacentes sont les plus favorables

@@ -1,3 +1,6 @@
+from typing import List, Any
+
+
 def display_grid(grid):
     for row in grid:
         print(' '.join(str(cell) for cell in row))
@@ -18,21 +21,38 @@ def isplacable(boat, grid):
         return False
 
 
-grid = [[0, 0, "X"],
-        [0, 0, "X"],
-        ["X", 0, "X"]]
-
-boat = [
-    [1, 1],
-    [1, 1],
-    [0, 1]
-]
+def get_frequency(grid, boat):
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            if isplacable(boat, grid):
+                grid[i][j] += 1
+    return
 
 
-print(isplacable(boat, grid))
-display_grid(grid)
+def get_max_width(matrix):
+    return max(len(row) for row in matrix)
 
 
-boat = rotate_boat(boat)
-print(isplacable(boat, grid))
-display_grid(grid)
+def set_next_position(boat: List[List[int]], grid: List[List[int]]) -> None:
+    """Set the next position of the boat in the grid."""
+    for i, row in enumerate(boat):
+        for j, cell in enumerate(row):
+            if isplacable(boat, grid):
+                if get_max_width(boat) != get_max_width(grid):
+                    return [[0] + row[:-1] for row in boat]
+                else:
+                    zero_row = [0] * len(boat[0])
+                    return [zero_row] + boat[:-1]
+
+
+grid = [[0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]]
+
+boat = [[1, 1, 0],
+        [0, 0, 0],
+        [0, 0, 0]]
+
+# display_grid(boat)
+set_next_position(boat, grid)
+display_grid(boat)

@@ -1,6 +1,38 @@
 const root = document.documentElement;
 const gridContainer = document.getElementById("grid_container");
+const boatContainer = document.getElementById("boat_container");
 const generateBoardBtn = document.getElementById("generate_board_btn");
+
+// const boats = [
+//   [[1]],
+//   [[1]],
+//   [[1]],
+//   [[1, 1]],
+//   [[1, 1]],
+//   [[1, 1]],
+//   [[1, 1, 1]],
+//   [[1, 1, 1]],
+//   [[1, 1, 1, 1]],
+// ];
+
+// const boats = [
+//   [[1, 1]],
+//   [[1, 1, 1]],
+//   [[1, 1, 1]],
+//   [[1, 1, 1, 1]],
+//   [[1, 1, 1, 1, 1]],
+// ];
+const boats = [
+  [[1, 1, 1]],
+  [[1, 1, 1]],
+  [[1, 1, 1, 1]],
+  [[1, 1, 1, 1]],
+  [
+    [1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1],
+  ],
+  [[1, 1, 1, 1, 1, 1]],
+];
 
 class PrettyTable {
   constructor() {
@@ -102,6 +134,10 @@ function getGridMatrix() {
  * a cell that has been marked with an "x".
  */
 function showGridMatrix(gridMatrix) {
+  const max = Math.max(...gridMatrix.flat().map((x) => (x === "x" ? 0 : x)));
+  const scale = chroma
+    .scale(["white", "orange", "red", "black"])
+    .domain([0, max]);
   const gridHTML = document.getElementsByClassName("grid-cell");
   for (let i = 0; i < gridHTML.length; i++) {
     const row = Math.floor(
@@ -114,6 +150,9 @@ function showGridMatrix(gridMatrix) {
       typeof gridMatrix[row][column] === "number"
         ? gridMatrix[row][column].toString()
         : "x";
+    if (gridMatrix[row][column] != "x") {
+      gridHTML[i].style.backgroundColor = scale(gridMatrix[row][column]).hex();
+    }
   }
 }
 
@@ -191,11 +230,12 @@ function getStats(boats, grid) {
 }
 
 generateBoardBtn.addEventListener("click", () => {
-  const sizes = document.querySelectorAll("#size");
+  const sizes = document.querySelectorAll(".size");
   const rows = sizes[0].value;
   const columns = sizes[1].value;
   gridContainer.innerHTML = "";
   gridContainer.appendChild(generateGridHTML(rows, columns));
+  showGridMatrix(getStats(boats, getGridMatrix()));
 });
 
 document.addEventListener("click", (event) => {
@@ -205,42 +245,10 @@ document.addEventListener("click", (event) => {
     event.target.innerText = "x";
     event.target.style.color = "#262624";
     event.target.style.fontSize = "2rem";
-    event.target.style.backgroundColor = "#ef4444";
+    event.target.style.backgroundColor = "white";
     console.clear();
-    displayGrid(
-      getStats(
-        [
-          [
-            [0, 1],
-            [1, 1],
-            [1, 0],
-          ],
-          [
-            [1, 0],
-            [1, 1],
-            [0, 1],
-          ],
-        ],
-        getGridMatrix()
-      )
-    );
-    showGridMatrix(
-      getStats(
-        [
-          [
-            [0, 1],
-            [1, 1],
-            [1, 0],
-          ],
-          [
-            [1, 0],
-            [1, 1],
-            [0, 1],
-          ],
-        ],
-        getGridMatrix()
-      )
-    );
+    displayGrid(getStats(boats, getGridMatrix()));
+    showGridMatrix(getStats(boats, getGridMatrix()));
   }
 });
 
@@ -249,41 +257,11 @@ document.addEventListener("contextmenu", (event) => {
     // Add your logic for what should happen when a grid cell is clicked
     event.preventDefault();
     event.target.innerText = "";
+    event.target.style.fontSize = "";
     event.target.style.backgroundColor = "";
+    event.target.style.color = "";
     console.clear();
-    displayGrid(
-      getStats(
-        [
-          [
-            [0, 1],
-            [1, 1],
-            [1, 0],
-          ],
-          [
-            [1, 0],
-            [1, 1],
-            [0, 1],
-          ],
-        ],
-        getGridMatrix()
-      )
-    );
-    showGridMatrix(
-      getStats(
-        [
-          [
-            [0, 1],
-            [1, 1],
-            [1, 0],
-          ],
-          [
-            [1, 0],
-            [1, 1],
-            [0, 1],
-          ],
-        ],
-        getGridMatrix()
-      )
-    );
+    displayGrid(getStats(boats, getGridMatrix()));
+    showGridMatrix(getStats(boats, getGridMatrix()));
   }
 });

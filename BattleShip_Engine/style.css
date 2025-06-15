@@ -31,8 +31,25 @@ body {
     font-weight: var(--fw-regular);
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
 h1 {
     text-align: center;
+    margin-bottom: 2rem;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
 }
 
 #generation_container {
@@ -42,8 +59,9 @@ h1 {
     align-items: center;
 }
 
-#size,
-#generate_board_btn {
+.size,
+#generate_board_btn,
+#generate_boat_btn {
     background-color: transparent;
     border: #3e3e38 solid 1px;
     border-radius: 5px;
@@ -52,26 +70,29 @@ h1 {
     cursor: pointer;
 }
 
-#size {
+.size {
     width: 60px;
 }
 
-#size::-webkit-outer-spin-button,
-#size::-webkit-inner-spin-button {
+.size::-webkit-outer-spin-button,
+.size::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-#generate_board_btn {
+#generate_board_btn,
+#generate_boat_btn {
     background-color: var(--cls-orange);
     transition: all 0.2s ease-in-out;
 }
 
-#generate_board_btn:hover {
+#generate_board_btn:hover,
+#generate_boat_btn:hover {
     background-color: #c76f52;
 }
 
-#grid_container {
+#grid_container,
+#boat_container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,6 +100,7 @@ h1 {
 }
 
 .grid {
+    user-select: none;
     display: grid;
     grid-template-columns: repeat(var(--columns), 1fr);
     grid-template-rows: repeat(var(--rows), 1fr);
@@ -90,8 +112,8 @@ h1 {
 }
 
 .grid-cell {
-    font-size: 2rem;
-    color: black;
+    font-size: 150%;
+    color: white;
     width: 50px;
     height: 50px;
     background-color: var(--cls-beige);
@@ -104,4 +126,11 @@ h1 {
 
 .grid-cell:hover {
     background-color: var(--cls-orange);
+}
+
+#boat_generation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

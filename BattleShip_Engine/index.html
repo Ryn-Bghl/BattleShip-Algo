@@ -14,20 +14,40 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="logos--shipit.png" type="image/x-icon" />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"></script>
     <script src="app.js" defer></script>
   </head>
   <body>
     <main>
       <h1>BattleShip Engine</h1>
-      <div id="generation_container">
-        <div id="board_size">
-          <input type="number" id="size" />
-          <span>x</span>
-          <input type="number" id="size" />
+      <div id="container">
+        <div id="stats">
+          <div id="generation_container">
+            <div id="board_size">
+              <input type="number" class="size" />
+              <span>x</span>
+              <input type="number" class="size" />
+            </div>
+            <input type="button" id="generate_board_btn" value="Generate" />
+          </div>
+          <div id="grid_container"></div>
         </div>
-        <input type="button" id="generate_board_btn" value="Generate" />
+        <div id="boat_generation">
+          <div>
+            <input type="number" class="size" />
+            <span>x</span>
+            <input type="number" class="size" />
+          </div>
+          <input type="button" id="generate_boat_btn" value="Generate Boat" />
+          <div id="boat_container">
+            <div id="boat_1"></div>
+            <div id="boat_2"></div>
+            <div id="boat_3"></div>
+            <div id="boat_4"></div>
+            <div id="boat_5"></div>
+          </div>
+        </div>
       </div>
-      <div id="grid_container"></div>
     </main>
   </body>
 </html>

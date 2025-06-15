@@ -41,10 +41,6 @@ def get_stats(boat, grid):
     return grid
 
 
-# grid = [[0, 0, 0],
-#         [0, "X", 0],
-#         [0, 0, 0]]
-
 grid = [[0, 0, 0, 0],
         [0, 0, "x", 0],
         [0, 0, 0, 0]]

@@ -132,3 +132,4 @@ La position de départ (x, y)
 
 # 6. creer une fonction qui affiche la grille
 
+# 7. les case avec le plus de case adjacente sont les plus favorables

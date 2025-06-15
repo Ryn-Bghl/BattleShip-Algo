@@ -1,5 +1,4 @@
 from prettytable import PrettyTable
-import random
 
 
 def display_grid(grid):
@@ -42,12 +41,17 @@ def get_stats(boat, grid):
     return grid
 
 
-grid = [[0, 0, 0],
-        [0, "X", 0],
-        [0, 0, 0]]
+# grid = [[0, 0, 0],
+#         [0, "X", 0],
+#         [0, 0, 0]]
+
+grid = [[0, 0, 0, 0],
+        [0, 0, "x", 0],
+        [0, 0, 0, 0]]
 
 boat = [[1, 1],
-        [0, 1]]
+        [1, 0],
+        [1, 1]]
 
 grid = get_stats(boat, grid)
 display_grid(grid)

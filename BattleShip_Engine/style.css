@@ -1,5 +1,6 @@
 :root {
-    --cls-orange: #d97757;
+    --cls-orange: hsl(15, 63%, 60%);
+    --cls-black: ;
     --cls-black: #262624;
     --cls-white: #ffffff;
     --cls-beige: #faf9f5;
@@ -8,7 +9,7 @@
     --fz-regular: 16px;
     --fw-regular: 400;
 
-    
+
 }
 
 * {

@@ -4,19 +4,23 @@ const boatContainer = document.getElementById("boat_container");
 const generateBoatBtn = document.getElementById("generate_boat_btn");
 const generateBoardBtn = document.getElementById("generate_board_btn");
 
-boats = [
+let boats = [
   [[1, 1]],
   [[1, 1]],
   [
+    [1, 0, 0],
+    [1, 0, 0],
     [1, 1, 1],
-    [0, 1, 0],
-    [0, 1, 0],
+  ],
+  [
+    [0, 1],
+    [1, 1],
+    [1, 0],
   ],
   [
     [1, 0],
     [1, 1],
   ],
-  [[1, 1, 1, 1]],
 ];
 
 class PrettyTable {

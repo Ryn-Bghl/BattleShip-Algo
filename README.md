@@ -2,6 +2,10 @@
 
 <https://tweakcn.com/editor/theme>
 
+## Preview
+
+![BattleShip Engine Theme](./Capture%20d'écran%202025-06-15%20185725.png)
+
 ## Comment représenter les bateaux ?
 
 Les bateaux sont :
